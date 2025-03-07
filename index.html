@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ORPHEUS-LABS</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: "Lucida Console", "Courier New", monospace;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 10px;
+            font-size: 24px;
+            color:#00FF00;
+            margin-bottom: 20px;
+        }
+        #nextPage {
+            display: none;
+            padding: 8px 16px;
+            font-size: 18px;
+            cursor: pointer;
+            border: 1px solid #00FF00;
+            border-radius: 6px;
+            background-color: #000;
+            color: #00FF00;
+        }
+        #nextPage:hover {
+            background-color: #00FF00;
+            color: #000
+        }
+    </style>
+</head>
+<body>
+    <div class="grid">
+        <div>U</div> <div>H</div> <div>O</div> <div>R</div> <div>D</div> <div>G</div>
+        <div>S</div> <div>D</div> <div>J</div> <div>H</div> <div>W</div> <div>B</div>
+        <div>S</div> <div>H</div> <div>R</div> <div>U</div> <div>S</div> <div>K</div>
+        <div>H</div> <div>X</div> <div>V</div> <div>D</div> <div>Q</div> <div>G</div>
+        <div>H</div> <div>Q</div> <div>W</div> <div>H</div> <div>U</div> <div>.</div>
+    </div>
+
+    <button id="nextPage" onclick="window.location.href='/public/index.html'">ENTER</button>
+
+    <script>
+        // Listen for key presses and reveal the button if the first typed word is "enter".
+        document.addEventListener('DOMContentLoaded', function() {
+            let typedWord = '';
+            let firstWordDetected = false;
+
+            document.addEventListener('keydown', function(event) {
+                if (firstWordDetected) return;
+
+                if (/^[a-zA-Z0-9]$/.test(event.key)) {
+                    typedWord += event.key;
+                } else if (event.key === ' ' || event.key === 'Enter') {
+                    
+                    if (typedWord.toLowerCase() === 'orpheus') {
+                        document.getElementById('nextPage').style.display = 'inline-block';
+                        firstWordDetected = true;
+                    }
+                    typedWord = '';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
