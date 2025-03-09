@@ -1,8 +1,7 @@
 // Import the functions you need from the SDKs you need
 
 import { initializeApp } from "firebase/app";
-
-import { getAnalytics } from "firebase/analytics";
+import { getDatabase, ref, push, onValue } from "firebase/database";
 
 // TODO: Add SDKs for Firebase products that you want to use
 
@@ -36,39 +35,39 @@ const firebaseConfig = {
 
 // Initialize Firebase
 
+// 1. Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
-const analytics = getAnalytics(app);
+// 2. Get a reference to your Realtime Database
+const database = getDatabase(app);
+const namesRef = ref(database, "names");
 
-    // 2. Reference a path in your database (e.g. "names")
-    const namesRef = database.ref("names");
+// 3. Listen for form submission, push new name
+document.getElementById("nameForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+  const nameInput = document.getElementById("nameInput");
+  const nameValue = nameInput.value.trim();
 
-    // 3. Listen for form submission and push the new name to the database
-    document.getElementById("nameForm").addEventListener("submit", function(e) {
-      e.preventDefault();
-      const nameInput = document.getElementById("nameInput");
-      const nameValue = nameInput.value.trim();
+  if (nameValue) {
+    // 'push' a new child under 'names'
+    push(namesRef, nameValue);
+    nameInput.value = ""; // clear the input
+  }
+});
 
-      if(nameValue) {
-        // Push the new name into the "names" list in Firebase
-        namesRef.push(nameValue);
-        nameInput.value = ""; // clear the input
-      }
+// 4. Listen for changes and update the UL
+onValue(namesRef, (snapshot) => {
+  const namesList = document.getElementById("namesList");
+  namesList.innerHTML = ""; // clear current list
+
+  const data = snapshot.val();
+  if (data) {
+    // data is an object with unique push keys -> name
+    // Convert each item into a list element
+    Object.keys(data).forEach((key) => {
+      const listItem = document.createElement("li");
+      listItem.textContent = data[key];
+      namesList.appendChild(listItem);
     });
-
-    // 4. Listen for changes in the "names" data and update the list
-    namesRef.on("value", (snapshot) => {
-      const namesList = document.getElementById("namesList");
-      namesList.innerHTML = ""; // clear current list
-
-      // Snapshot gives you a key/value map of everything under "names"
-      const data = snapshot.val();
-      if(data) {
-        // Convert each item into a list element
-        Object.keys(data).forEach((key) => {
-          const listItem = document.createElement("li");
-          listItem.textContent = data[key];
-          namesList.appendChild(listItem);
-        });
-      }
-    });
+  }
+});
