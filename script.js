@@ -65,9 +65,9 @@ onValue(namesRef, (snapshot) => {
     // data is an object with unique push keys -> name
     // Convert each item into a list element
     Object.keys(data).forEach((key) => {
-      const listItem = document.createElement("li");
+      const li = document.createElement("li");
       listItem.textContent = data[key];
-      namesList.appendChild(listItem);
+      namesList.appendChild(li);
     });
   }
 });
