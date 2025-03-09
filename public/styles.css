@@ -1,0 +1,58 @@
+body {
+  background-color: #000;
+  color: #fff;
+  font-family: "Lucida Console", "Courier New", monospace;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start; /* so there's space for the list to grow downward */
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+}
+.title {
+  color: #00FF00;
+  margin-top: 50px;
+  margin-bottom: 20px;
+  font-size: 36px;
+}
+.instructions {
+  color: #00FF00;
+  margin-bottom: 30px;
+  font-size: 18px;
+}
+form {
+  margin-bottom: 20px;
+}
+input[type="text"] {
+  background-color: #000;
+  color: #00FF00;
+  border: 1px solid #00FF00;
+  font-size: 16px;
+  padding: 8px;
+  border-radius: 4px;
+}
+button {
+  background-color: #000;
+  color: #00FF00;
+  border: 1px solid #00FF00;
+  border-radius: 4px;
+  font-size: 16px;
+  padding: 8px 12px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+button:hover {
+  background-color: #00FF00;
+  color: #000;
+}
+#namesList {
+  list-style-type: none;
+  padding: 0;
+  font-size: 18px;
+  margin-top: 0;
+}
+#namesList li {
+  margin: 5px 0;
+}

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Orpheus Labs - Name List</title>
+  <!-- Import the Firebase scripts -->
+  <!-- Make sure to replace with the correct version or use the latest from https://firebase.google.com/docs/web/setup#available-libraries -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <h1 class="title">You Solved the Cypher!</h1>
+  <div class="instructions">Enter your name below and submit to add it to the list.</div>
+
+  <form id="nameForm">
+    <input type="text" id="nameInput" placeholder="Enter your name" required />
+    <button type="submit">Submit</button>
+  </form>
+
+  <ul id="namesList"></ul>
+
+  <script src="script.js"></script>
+</body>
+</html>
