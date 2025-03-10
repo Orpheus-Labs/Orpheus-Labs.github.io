@@ -44,8 +44,6 @@ onValue(namesRef, (snapshot) => {
   const data = snapshot.val();
   const namesList = document.getElementById("namesList");
   namesList.innerHTML = ""; 
-
-  const data = snapshot.val();
   
   if (data) {
     Object.keys(data).forEach((key) => {
