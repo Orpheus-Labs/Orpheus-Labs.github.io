@@ -3,20 +3,45 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Orpheus-Labs</title>
+  <title>Orpheus-Labs - Project Gallery</title>
  
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <h1 class="title">You Solved the Cypher!</h1>
-  <div class="instructions">Enter your name below and submit to add it to the list.</div>
+  <header class="header">
+    <h1 class="title">Orpheus-Labs</h1>
+    <p class="subtitle">Coding Projects Gallery</p>
+  </header>
 
-  <form id="nameForm">
-    <input type="text" id="nameInput" placeholder="Enter your name" required />
-    <button type="submit">Submit</button>
-  </form>
+  <div class="container">
+    <div class="search-container">
+      <input type="text" id="searchInput" placeholder="Search projects..." />
+      <button id="refreshBtn">Refresh Projects</button>
+    </div>
 
-  <ul id="namesList"></ul>
+    <div id="loadingMessage" class="loading">Loading projects...</div>
+    <div id="errorMessage" class="error" style="display: none;"></div>
+
+    <div id="projectsGallery" class="gallery"></div>
+  </div>
+
+  <!-- Modal for viewing project files -->
+  <div id="projectModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 id="modalTitle">Project Files</h2>
+        <span class="close">&times;</span>
+      </div>
+      <div class="modal-body">
+        <div class="file-browser">
+          <div id="fileTree" class="file-tree"></div>
+          <div class="file-viewer">
+            <iframe id="fileFrame" sandbox="allow-scripts allow-same-origin"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <script type="module" src="script.js"></script>
 </body>
