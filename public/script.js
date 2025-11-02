@@ -7,19 +7,31 @@ let allProjects = [];
 let currentProject = null;
 
 // DOM Elements
-const projectsGallery = document.getElementById('projectsGallery');
-const loadingMessage = document.getElementById('loadingMessage');
-const errorMessage = document.getElementById('errorMessage');
-const searchInput = document.getElementById('searchInput');
-const refreshBtn = document.getElementById('refreshBtn');
-const modal = document.getElementById('projectModal');
-const modalTitle = document.getElementById('modalTitle');
-const fileTree = document.getElementById('fileTree');
-const fileFrame = document.getElementById('fileFrame');
-const closeBtn = document.querySelector('.close');
+let projectsGallery;
+let loadingMessage;
+let errorMessage;
+let searchInput;
+let refreshBtn;
+let modal;
+let modalTitle;
+let fileTree;
+let fileFrame;
+let closeBtn;
 
 // Initialize
 async function init() {
+  // Get DOM elements after page loads
+  projectsGallery = document.getElementById('projectsGallery');
+  loadingMessage = document.getElementById('loadingMessage');
+  errorMessage = document.getElementById('errorMessage');
+  searchInput = document.getElementById('searchInput');
+  refreshBtn = document.getElementById('refreshBtn');
+  modal = document.getElementById('projectModal');
+  modalTitle = document.getElementById('modalTitle');
+  fileTree = document.getElementById('fileTree');
+  fileFrame = document.getElementById('fileFrame');
+  closeBtn = document.querySelector('.close');
+  
   await fetchProjects();
   setupEventListeners();
 }
@@ -341,5 +353,9 @@ function showError(message) {
   errorMessage.style.display = 'block';
 }
 
-// Start the application
-init();
+// Start the application when DOM is ready
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', init);
+} else {
+  init();
+}
